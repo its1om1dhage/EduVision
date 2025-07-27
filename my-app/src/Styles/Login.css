@@ -1,0 +1,187 @@
+.login-bg {
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #181824; /* Clean dark background */
+  position: fixed;
+  top: 0; left: 0;
+  z-index: 9999;
+}
+
+/* Remove all blob background styles */
+/* .login-bg-blobs,
+.login-blob,
+.login-blob1,
+.login-blob2,
+.login-blob3 {
+  display: none !important;
+} */
+
+.glass-login-form {
+  position: relative;
+  border-radius: 1rem;
+  background: hsl(252, 9%, 22%, 0.25); /* semi-transparent, glassy */
+  backdrop-filter: blur(12px);
+  padding: 2.5rem 2rem;
+  width: 100%;
+  max-width: 50vw;
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.2rem;
+  color: #fff;
+  border: none; /* Remove solid border */
+  box-shadow: 0 8px 32px rgba(67,233,123,0.13);
+  animation: popIn 0.5s cubic-bezier(.68,-0.55,.27,1.55);
+  z-index: 2;
+}
+
+.glass-login-form::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid transparent;
+  background: linear-gradient(
+    135deg,
+    #43e97b 0%,
+    #38f9d7 40%,
+    #f09819 80%,
+    #ff5858 100%
+  ) border-box;
+  mask: linear-gradient(black, black) border-box,
+        linear-gradient(black, black) padding-box;
+  mask-composite: subtract;
+  pointer-events: none;
+}
+
+.glass-login-form h2 {
+  text-align: center;
+  margin-bottom: 0.5rem;
+  font-weight: 800;
+  font-size: 2rem;
+  background: linear-gradient(90deg, #43e97b 0%, #38f9d7 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.glass-login-form input {
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  border: 1.5px solid #43e97b;
+  background: #23232f;
+  color: #fff;
+  font-size: 1.08rem;
+  outline: none;
+  transition: border 0.2s;
+}
+
+.glass-login-form input:focus {
+  border: 1.5px solid #f09819;
+}
+
+.glass-login-form button {
+  padding: 0.7rem 1.5rem;
+  border-radius: 8px;
+  border: none;
+  font-weight: 700;
+  font-size: 1.08rem;
+  background: linear-gradient(90deg, #43e97b 0%, #38f9d7 100%);
+  color: #23232f;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.glass-login-form button:hover {
+  background: linear-gradient(90deg, #f09819 0%, #ff5858 100%);
+  color: #fff;
+}
+
+.login-error {
+  color: #ff5858;
+  background: #fff0f0;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.login-toggle {
+  color: #43e97b;
+  cursor: pointer;
+  font-weight: 600;
+  margin-left: 0.3rem;
+}
+
+.login-toggle:hover {
+  color: #f09819;
+}
+
+/* Dynamic animated blobs background */
+.login-bg-blobs {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  overflow: hidden;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.login-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.6;
+  mix-blend-mode: lighten;
+}
+
+/* Blob 1: moves diagonally across the screen */
+.login-blob1 {
+  width: 420px; height: 420px;
+  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+  left: 0; top: 0;
+  animation: moveBlob1 22s ease-in-out infinite alternate;
+  animation-delay: 0s;
+}
+/* Blob 2: moves from top right to bottom left */
+.login-blob2 {
+  width: 340px; height: 340px;
+  background: linear-gradient(135deg, #f09819 0%, #ff5858 100%);
+  right: 0; top: 0;
+  animation: moveBlob2 26s ease-in-out infinite alternate;
+  animation-delay: 3s;
+}
+/* Blob 3: moves from bottom center to top center */
+.login-blob3 {
+  width: 320px; height: 320px;
+  background: linear-gradient(135deg, #5d00ff 0%, #38f9d7 100%);
+  left: 50%; bottom: 0;
+  transform: translateX(-50%);
+  animation: moveBlob3 3s ease-in-out infinite alternate;
+  animation-delay: 0.1s;
+}
+
+/* Animate only transform for smooth movement */
+@keyframes moveBlob1 {
+  0%   { transform: translate(0, 0) scale(1);}
+  100% { transform: translate(60vw, 60vh) scale(1.15);}
+}
+@keyframes moveBlob2 {
+  0%   { transform: translate(0, 0) scale(1);}
+  100% { transform: translate(-60vw, 60vh) scale(1.1);}
+}
+@keyframes moveBlob3 {
+  0%   { transform: translateX(-50%) translateY(0) scale(1);}
+  100% { transform: translateX(-50%) translateY(-50vh) scale(1.12);}
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.95) translateY(40px); opacity: 0; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}

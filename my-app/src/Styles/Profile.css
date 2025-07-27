@@ -1,0 +1,311 @@
+body{
+    height: 100vh;
+}
+
+.profile-section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 80px;
+  background: none;
+  width: 100%;
+  margin: 30vh 0 10vh;
+}
+
+.profile-card {
+  background: rgba(30, 30, 40, 0.92);
+  border-radius: 28px;
+  box-shadow: 0 8px 32px rgba(67,233,123,0.10), 0 1.5px 8px 0 rgba(0,0,0,0.09);
+  padding: 2.5rem 2.2rem 2rem 2.2rem;
+  width: 50vw;         /* Fixed width */
+  max-width: 98vw;      /* Responsive on very small screens */
+  margin-bottom: 2.5rem;
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  backdrop-filter: blur(8px);
+  border: 1.5px solid rgba(67,233,123,0.18);
+  animation: popIn 0.7s cubic-bezier(.68,-0.55,.27,1.55);
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.95) translateY(40px); opacity: 0; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.profile-photo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.profile-photo img {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #43e97b;
+  box-shadow: 0 2px 16px #43e97b33;
+  cursor: pointer;
+  transition: box-shadow 0.2s, border 0.2s;
+}
+
+.profile-photo img.editable:hover {
+  box-shadow: 0 4px 24px #f0981955;
+  border: 4px solid #f09819;
+}
+
+.profile-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.profile-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+}
+
+.profile-row label {
+  min-width: 120px;
+  color: #43e97b;
+  font-weight: 600;
+  font-size: 1.08rem;
+}
+
+.profile-row input,
+.profile-row select {
+  flex: 1;
+  padding: 0.5rem 0.8rem;
+  border-radius: 8px;
+  border: 1.5px solid #f09819;
+  background: #23232f;
+  color: #fff;
+  font-size: 1.08rem;
+  font-weight: 500;
+  outline: none;
+  transition: border 0.2s;
+}
+
+.profile-row input:focus,
+.profile-row select:focus {
+  border: 1.5px solid #43e97b;
+}
+
+.hobbies-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+.hobby-checkbox {
+  background: #23232f;
+  border-radius: 6px;
+  padding: 0.3rem 0.7rem;
+  color: #fff;
+  font-size: 0.98rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  border: 1px solid #43e97b33;
+}
+
+.profile-actions {
+  display: flex;
+  gap: 1.2rem;
+  justify-content: flex-end;
+  margin-top: 1.2rem;
+}
+
+.edit-btn, .save-btn, .cancel-btn {
+  padding: 0.5rem 1.3rem;
+  border-radius: 8px;
+  border: none;
+  font-weight: 700;
+  font-size: 1.05rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.edit-btn {
+  background: linear-gradient(90deg, #43e97b 0%, #38f9d7 100%);
+  color: #23232f;
+}
+
+.save-btn {
+  background: linear-gradient(90deg, #f09819 0%, #ff5858 100%);
+  color: #fff;
+}
+
+.cancel-btn {
+  background: #23232f;
+  color: #fff;
+  border: 1.5px solid #ff5858;
+}
+
+.profile-auth {
+  background: rgba(30, 30, 40, 0.92);
+  border-radius: 18px;
+  box-shadow: 0 2px 12px rgba(67,233,123,0.08);
+  padding: 1.5rem 2rem;
+  width: 100%;
+  max-width: 430px;
+  text-align: center;
+  color: #fff;
+  margin-bottom: 2rem;
+  border: 1.5px solid rgba(67,233,123,0.12);
+}
+
+.profile-auth h2 {
+  margin-bottom: 1.1rem;
+  color: #43e97b;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.auth-btn {
+  padding: 0.5rem 1.5rem;
+  margin: 0 0.5rem;
+  border-radius: 8px;
+  border: none;
+  font-weight: 700;
+  font-size: 1.05rem;
+  cursor: pointer;
+  background: linear-gradient(90deg, #43e97b 0%, #38f9d7 100%);
+  color: #23232f;
+  transition: background 0.2s, color 0.2s;
+}
+
+.auth-btn:hover {
+  background: linear-gradient(90deg, #f09819 0%, #ff5858 100%);
+  color: #fff;
+}
+
+.profile-modal-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: rgba(30, 30, 40, 0.841);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.profile-modal {
+  background: rgba(30, 30, 40, 0.98);
+  border-radius: 22px;
+  box-shadow: 0 8px 32px rgba(67,233,123,0.18), 0 1.5px 8px 0 rgba(0,0,0,0.13);
+  padding: 1.5rem 1.2rem 1.2rem 1.2rem;
+  width: 100%;
+  max-width: 60vw;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  color: #fff;
+  backdrop-filter: blur(12px);
+  border: 2px solid #43e97b55;
+  animation: popIn 0.5s cubic-bezier(.68,-0.55,.27,1.55);
+}
+
+.profile-modal .profile-photo.edit {
+  margin-bottom: 1.2rem;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-modal .profile-photo img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #43e97b;
+  box-shadow: 0 2px 16px #43e97b33;
+  cursor: pointer;
+  transition: box-shadow 0.2s, border 0.2s;
+}
+
+.profile-modal .profile-photo img.editable:hover {
+  box-shadow: 0 4px 24px #f0981955;
+  border: 4px solid #f09819;
+}
+
+.photo-hint {
+  font-size: 0.95rem;
+  color: #43e97b;
+  margin-top: 0.5rem;
+  opacity: 0.8;
+}
+
+.profile-edit-form .profile-row {
+  margin-bottom: 1.1rem;
+}
+
+.profile-actions.modal-actions {
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.profile-modal input,
+.profile-modal select {
+  width: 100%;
+  padding: 0.5rem 0.8rem;
+  border-radius: 8px;
+  border: 1.5px solid #f09819;
+  background: #23232f;
+  color: #fff;
+  font-size: 1.08rem;
+  font-weight: 500;
+  outline: none;
+  transition: border 0.2s;
+}
+
+.profile-modal input:focus,
+.profile-modal select:focus {
+  border: 1.5px solid #43e97b;
+}
+
+.profile-modal .hobbies-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+.profile-modal .hobby-checkbox {
+  background: #23232f;
+  border-radius: 6px;
+  padding: 0.3rem 0.7rem;
+  color: #fff;
+  font-size: 0.98rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  border: 1px solid #43e97b33;
+}
+
+@media (max-width: 600px) {
+  .profile-card, .profile-auth {
+    max-width: 98vw;
+    padding: 1.2rem 0.5rem;
+  }
+  .profile-section {
+    padding-top: 60px;
+  }
+  .profile-row label {
+    min-width: 80px;
+    font-size: 0.98rem;
+  }
+  .profile-modal {
+    max-width: 98vw;
+    padding: 1.2rem 0.5rem;
+  }
+}
